@@ -65,3 +65,5 @@ gem 'simple_form'
 gem 'jquery-rails'
 
 gem "sassc-rails"
+
+gem "rack-cors", "~> 3.0"

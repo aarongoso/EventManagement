@@ -1,0 +1,41 @@
+body {
+  background-color: #f6f6f8; /* light grey */
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.card-body {
+  background-color: #ffffff; /* white background inside cards */
+  border-radius: 0 0 12px 12px;
+}
+
+body, h1, h2, h3, p {
+  color: #222;
+}
+
+.navbar {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  background-color: #212529; /* same as navbar dark background */
+  color: #fff; /* make the text white */
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+  border-top: 1px solid #333;
+}
+
+footer span {
+  font-weight: 600;
+}
