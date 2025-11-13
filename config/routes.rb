@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
     # RESTful routes for all main models — Users, Events, and Bookings
   # These automatically create all CRUD routes (index, show, new, edit, create, update, destroy)
-  resources :bookings
-  resources :events
-  resources :users
+  # These define the RESTful routes for CRUD operations across Users, Events, and Bookings
+   resources :users, only: [:index]
+   resources :bookings
+   resources :events
 
   # Health check route — used by Rails to verify the app boots correctly
   get "up" => "rails/health#show", as: :rails_health_check

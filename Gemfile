@@ -67,3 +67,5 @@ gem 'jquery-rails'
 gem "sassc-rails"
 
 gem "rack-cors", "~> 3.0"
+
+gem "devise", "~> 4.9"

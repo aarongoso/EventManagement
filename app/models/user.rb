@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_secure_password
+  # Devise modules
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
   # Associations
   has_many :events, dependent: :destroy
@@ -7,6 +9,14 @@ class User < ApplicationRecord
 
   # Validations
   validates :name, presence: true, length: { minimum: 2 }
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :role, presence: true, inclusion: { in: %w[admin user] }
+
+  # Assign a default role when creating a new user
+  before_validation :set_default_role, on: :create
+
+  private
+
+  def set_default_role
+    self.role ||= "user"
+  end
 end

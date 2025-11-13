@@ -1,7 +1,9 @@
 class Event < ApplicationRecord
   # Associations
-  belongs_to :user
-  has_many :bookings, dependent: :destroy
+  # Each event belongs to a user and can have many bookings
+  # similar to how an event platform manages attendees
+   belongs_to :user
+   has_many :bookings, dependent: :destroy
 
   # Validations
   validates :title, presence: true, length: { minimum: 3 }

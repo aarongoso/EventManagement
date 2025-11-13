@@ -25,7 +25,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        # Added icons to improve user feedback
         format.html { redirect_to @user, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
@@ -59,13 +58,15 @@ class UsersController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions
     def set_user
       @user = User.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through
+    # Devise handles password fields separately
     def user_params
-      params.require(:user).permit(:name, :email, :role, :password, :password_confirmation)
+      params.expect(user: [:name, :email, :role])
     end
 end
