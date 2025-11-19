@@ -1,5 +1,4 @@
 class EventPolicy < ApplicationPolicy
-
   # Anyone can see events
   def index?
     true
@@ -43,5 +42,4 @@ class EventPolicy < ApplicationPolicy
     return false unless user.present?
     user.role == "admin" || record.user_id == user.id
   end
-
 end

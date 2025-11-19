@@ -2,7 +2,6 @@ require 'rails_helper'
 
 # Basic tests for Devise authentication (sign up, sign in, sign out)
 RSpec.describe "User Authentication", type: :request do
-  
   describe "GET /users/sign_in" do
     it "renders the login page successfully" do
       get new_user_session_path

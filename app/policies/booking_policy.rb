@@ -1,5 +1,4 @@
 class BookingPolicy < ApplicationPolicy
-
   # Anyone logged in can create a booking
   def create?
     user.present?
@@ -37,5 +36,4 @@ class BookingPolicy < ApplicationPolicy
     return false unless user.present?
     user.role == "admin" || record.user_id == user.id
   end
-
 end

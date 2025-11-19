@@ -1,5 +1,4 @@
 class UserPolicy < ApplicationPolicy
-
   def index?
     user.role == "admin"
   end
@@ -21,5 +20,4 @@ class UserPolicy < ApplicationPolicy
       user.role == "admin" ? scope.all : scope.where(id: user.id)
     end
   end
-
 end

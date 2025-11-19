@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
-  # Associations
-  # Each event belongs to a user and can have many bookings
-  # similar to how an event platform manages attendees
+   # Associations
+   # Each event belongs to a user and can have many bookings
+   # similar to how an event platform manages attendees
    belongs_to :user
    has_many :bookings, dependent: :destroy
 

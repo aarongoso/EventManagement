@@ -13,17 +13,17 @@ Devise.setup do |config|
   # config.parent_controller = 'DeviseController'
 
   # ==> Mailer Configuration
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
 
   # ==> ORM configuration
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
-  config.case_insensitive_keys = [:email]
-  config.strip_whitespace_keys = [:email]
+  config.case_insensitive_keys = [ :email ]
+  config.strip_whitespace_keys = [ :email ]
 
   # This prevents Devise from storing session for HTTP basic auth
-  config.skip_session_storage = [:http_auth]
+  config.skip_session_storage = [ :http_auth ]
 
   # ==> Turbo / Rails 8 compatibility (REQUIRED)
   #
@@ -48,7 +48,7 @@ Devise.setup do |config|
   # ==> Navigation configuration
   #
   # Turbo needs HTML + turbo_stream formats to behave correctly
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.navigational_formats = [ "*/*", :html, :turbo_stream ]
 
   # Ensure Devise uses DELETE for logging out — required for security
   config.sign_out_via = :delete
