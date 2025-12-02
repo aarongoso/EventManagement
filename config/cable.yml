@@ -8,10 +8,9 @@ development:
 test:
   adapter: test
 
+# Using async to avoid SolidCable trying to use a separate "cable" database
+# disabled multi db cable connection casuee redner free only supports 1 db
 production:
-  adapter: solid_cable
-  connects_to:
-    database:
-      writing: cable
+  adapter: async
   polling_interval: 0.1.seconds
   message_retention: 1.day
