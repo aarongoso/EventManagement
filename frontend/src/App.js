@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useParams } 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/custom.css";
 // using env variable for backend URL (learned from React labs)
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
+// updated default to Render backend for production deploy
+const API_URL = process.env.REACT_APP_API_URL || "https://eventmanagement-backend-y0z3.onrender.com";
 
 // Home Page Component
 function Home() {
