@@ -13,7 +13,7 @@ class EmailController < ApplicationController
 
     # send the email using ActionMailer
     # following examples from ActionMailer lecture
-    UserMailer.booking_confirmation(user, event).deliver_nowt
+    UserMailer.booking_confirmation(user, event).deliver_now
 
     # JSON response for React frontend
     render json: { message: "Confirmation email sent successfully." }, status: :ok
