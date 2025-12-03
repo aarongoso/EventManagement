@@ -2,11 +2,18 @@ class EmailController < ApplicationController
   # POST /send_confirmation
   def send_confirmation
     # static user id (no Devise)
-    user = User.find(params[:user_id])
+    # making sure demo user always exists (same fix used in BookingsController)
+    user = User.find_or_create_by(id: 1) do |u|
+      u.name = "Demo User"      # fallback user for testing
+      u.email = "demo@example.com"   # using lab style seed values
+    end
+
+    # fetch event normally
     event = Event.find(params[:event_id])
 
     # send the email using ActionMailer
-    UserMailer.booking_confirmation(user, event).deliver_now
+    # following examples from ActionMailer lecture
+    UserMailer.booking_confirmation(user, event).deliver_nowt
 
     # JSON response for React frontend
     render json: { message: "Confirmation email sent successfully." }, status: :ok

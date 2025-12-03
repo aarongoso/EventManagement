@@ -30,9 +30,16 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
 
+    # manually assigning demo user since Devise was removed
+    @booking.user = User.find_or_create_by(id: 1) do |u|
+      u.name = "Demo User"
+      u.email = "demo@example.com"   # following labs for seed style fallback
+    end
+
     if @booking.save
       render json: @booking, status: :created
     else
+      # this took me a while to fix — Rails returns structured errors here
       render json: @booking.errors, status: :unprocessable_entity
     end
   end
@@ -66,7 +73,7 @@ class BookingsController < ApplicationController
 
     # Only allow a list of trusted parameters through
     # user_id is NOT permitted from the form (security)
-    # React sends user_id manually in JSON
+    # React sends user_id manually but we override it anyway for safety
     def booking_params
       params.require(:booking).permit(:event_id, :status)
     end

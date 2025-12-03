@@ -39,7 +39,14 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
-    @event = Event.new(event_params)
+    # after removing Devise, events require a user manually
+    # using the same fallback pattern used in Bookings + Email controllerss
+    demo_user = User.find_or_create_by(id: 1) do |u|
+      u.name = "Demo User"
+      u.email = "demo@example.com"          # required by ActionMailer
+    end
+
+    @event = Event.new(event_params.merge(user_id: demo_user.id))  # attach default user
 
     respond_to do |format|
       if @event.save
