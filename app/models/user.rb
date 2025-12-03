@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   # Devise modules
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :validatable
+  # above removed because switching to simpler email based auth
 
   # Associations
   has_many :events, dependent: :destroy

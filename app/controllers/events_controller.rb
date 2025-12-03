@@ -1,55 +1,51 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [ :index, :show ]
+  # before_action :authenticate_user!, except: [ :index, :show ]
   before_action :set_event, only: %i[ show edit update destroy ]
 
-  # Pundit verification
-  after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
   # GET /events or /events.json
   def index
     # Loads all events and their associated users (eager loading for efficiency)
-    @events = policy_scope(Event.includes(:user))
+    # @events = policy_scope(Event.includes(:user))
+    @events = Event.all  # simplified after removing Pundit
 
     respond_to do |format|
       format.html # renders the default index.html.erb
-      format.json { render json: @events.to_json(include: :user) }
+      # returning clean JSON for React frontend
+      format.json { render json: @events }
     end
   end
 
   # GET /events/1 or /events/1.json
   def show
-    authorize @event
+    # authorize @event  # removed Pundit
 
     respond_to do |format|
       format.html # renders the default show.html.erb
-      format.json { render json: @event.to_json(include: :user) }
+      # sending JSON data to React
+      format.json { render json: @event }
     end
   end
 
   # GET /events/new
   def new
     @event = Event.new
-    authorize @event
+    # authorize @event  # removed Pundit
   end
 
   # GET /events/1/edit
   def edit
-    authorize @event
+    # authorize @event  # removed Pundit
   end
 
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
 
-    # Assign ownership of the event to the currently logged in user
-    @event.user = current_user
-
-    authorize @event
-
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: "Event was successfully created." }
-        format.json { render :show, status: :created, location: @event }
+        # returning full event record so React can update instantly
+        format.json { render json: @event, status: :created }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -59,12 +55,11 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1 or /events/1.json
   def update
-    authorize @event
-
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: "Event was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @event }
+        # sending updated JSON for React
+        format.json { render json: @event, status: :ok }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -74,11 +69,12 @@ class EventsController < ApplicationController
 
   # DELETE /events/1 or /events/1.json
   def destroy
-    authorize @event
+    # authorize @event  # removed Pundit
     @event.destroy!
 
     respond_to do |format|
       format.html { redirect_to events_path, notice: "Event was successfully destroyed.", status: :see_other }
+      # React expects a clean status code for DELETE
       format.json { head :no_content }
     end
   end

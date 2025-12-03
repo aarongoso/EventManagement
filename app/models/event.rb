@@ -1,9 +1,7 @@
 class Event < ApplicationRecord
-   # Associations
-   # Each event belongs to a user and can have many bookings
-   # similar to how an event platform manages attendees
-   belongs_to :user
-   has_many :bookings, dependent: :destroy
+  # Associations
+  # belongs_to :user   # removed after dropping Devise
+  has_many :bookings, dependent: :destroy
 
   # Validations
   validates :title, presence: true, length: { minimum: 3 }
@@ -11,5 +9,6 @@ class Event < ApplicationRecord
   validates :location, presence: true
   validates :date, presence: true
   validates :time, presence: true
-  validates :capacity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :capacity, presence: true,
+                       numericality: { only_integer: true, greater_than: 0 }
 end

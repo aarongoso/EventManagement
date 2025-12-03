@@ -37,9 +37,13 @@ Rails.application.configure do
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
 
-  # Set localhost to be used by links generated in mailer templates.
-  # (Required by Devise for generating correct login/reset links)
+  # Default URL for mailer links during development
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+
+  # Using Letter Opener for development
+  # emails open in browser instead of being sent
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

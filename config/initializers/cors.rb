@@ -5,8 +5,7 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # keeping localhost for dev (from labs)
-    origins "http://localhost:3000",
-            "http://localhost:3001",
+    origins "http://localhost:3001",
             "https://startling-lokum-604bb4.netlify.app"  # added Netlify domain
 
     resource "*",

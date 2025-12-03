@@ -48,11 +48,16 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "dotenv-rails" # loading env vars from .env file
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  # Letter Opener to preview emails in the browser instead of sending real emails
+  gem "letter_opener"
+  gem "letter_opener_web"
 end
 # Development and Testing Tools
 group :development, :test do
@@ -71,7 +76,5 @@ gem "jquery-rails"
 gem "sassc-rails"
 
 gem "rack-cors", "~> 3.0"
-
-gem "devise", "~> 4.9"
-
-gem "pundit", "~> 2.5"
+# gem "devise", "~> 4.9"   # commented out after removing Devise
+# gem "pundit", "~> 2.5"   # commented out after removing Pundit
