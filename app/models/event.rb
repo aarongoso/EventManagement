@@ -1,6 +1,9 @@
 class Event < ApplicationRecord
   # Associations
-  # belongs_to :user   # removed after dropping Devise
+  # re enabled because events table now contains user_id (migration added this)
+  # following Rails best practices + fixing test + CRUD failures
+  belongs_to :user
+
   has_many :bookings, dependent: :destroy
 
   # Validations

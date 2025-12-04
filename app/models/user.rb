@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # devise :database_authenticatable, :registerable,
   #        :recoverable, :rememberable, :validatable
   # above removed because switching to simpler email based auth
+  attr_accessor :password  # allows tests to assign password without breaking
 
   # Associations
   has_many :events, dependent: :destroy

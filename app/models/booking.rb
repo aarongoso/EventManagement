@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   # Associations
   # optional: true added because we removed Devise (no auth used)
-  belongs_to :user, optional: true   # avoids forcing real users
+  belongs_to :user, optional: true   # test suite will be updated
   belongs_to :event
 
   # Validations

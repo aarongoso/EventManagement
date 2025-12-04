@@ -4,7 +4,7 @@ FactoryBot.define do
     description { "A test description for an event" }
     location    { "NCI" }
     date        { Date.today }
-    time        { Time.now }
+    time        { Time.parse("12:00") }   # using fixed HH:MM since React form expects it
     capacity    { 30 }
 
     association :user  # event belongs to user

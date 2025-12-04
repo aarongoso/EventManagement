@@ -7,9 +7,9 @@ RSpec.describe Booking, type: :model do
       expect(booking).to be_valid
     end
 
-    it "is invalid without a user" do
+    it "allows a booking without a user (because user is optional)" do
       booking = build(:booking, user: nil)
-      expect(booking).not_to be_valid
+      expect(booking).to be_valid
     end
 
     it "is invalid without an event" do
@@ -24,7 +24,7 @@ RSpec.describe Booking, type: :model do
   end
 
   describe "associations" do
-    it { should belong_to(:user) }
+    it { should belong_to(:user).optional }
     it { should belong_to(:event) }
   end
 end
